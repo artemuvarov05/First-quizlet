@@ -1,0 +1,112 @@
+[
+  {
+    "word": "hello",
+    "symbol": "h",
+    "translation": "привет",
+    "last_reviewed": null,
+    "next_review": "2025-12-28T22:40:08.511324",
+    "correct_count": 0,
+    "incorrect_count": 0,
+    "difficulty": 1,
+    "times_reviewed": 0
+  },
+  {
+    "word": "world",
+    "symbol": "w",
+    "translation": "мир",
+    "last_reviewed": null,
+    "next_review": "2025-12-28T22:40:08.511355",
+    "correct_count": 0,
+    "incorrect_count": 0,
+    "difficulty": 1,
+    "times_reviewed": 0
+  },
+  {
+    "word": "python",
+    "symbol": "p",
+    "translation": "питон, язык программирования",
+    "last_reviewed": null,
+    "next_review": "2025-12-28T22:40:08.511358",
+    "correct_count": 0,
+    "incorrect_count": 0,
+    "difficulty": 1,
+    "times_reviewed": 0
+  },
+  {
+    "word": "computer",
+    "symbol": "c",
+    "translation": "компьютер",
+    "last_reviewed": null,
+    "next_review": "2025-12-28T22:40:08.511360",
+    "correct_count": 0,
+    "incorrect_count": 0,
+    "difficulty": 1,
+    "times_reviewed": 0
+  },
+  {
+    "word": "keyboard",
+    "symbol": "k",
+    "translation": "клавиатура",
+    "last_reviewed": null,
+    "next_review": "2025-12-28T22:40:08.511361",
+    "correct_count": 0,
+    "incorrect_count": 0,
+    "difficulty": 1,
+    "times_reviewed": 0
+  },
+  {
+    "word": "mouse",
+    "symbol": "m",
+    "translation": "мышь",
+    "last_reviewed": null,
+    "next_review": "2025-12-28T22:40:08.511363",
+    "correct_count": 0,
+    "incorrect_count": 0,
+    "difficulty": 1,
+    "times_reviewed": 0
+  },
+  {
+    "word": "screen",
+    "symbol": "s",
+    "translation": "экран",
+    "last_reviewed": null,
+    "next_review": "2025-12-28T22:40:08.511364",
+    "correct_count": 0,
+    "incorrect_count": 0,
+    "difficulty": 1,
+    "times_reviewed": 0
+  },
+  {
+    "word": "algorithm",
+    "symbol": "a",
+    "translation": "алгоритм",
+    "last_reviewed": null,
+    "next_review": "2025-12-28T22:40:08.511365",
+    "correct_count": 0,
+    "incorrect_count": 0,
+    "difficulty": 1,
+    "times_reviewed": 0
+  },
+  {
+    "word": "function",
+    "symbol": "f",
+    "translation": "функция",
+    "last_reviewed": null,
+    "next_review": "2025-12-28T22:40:08.511367",
+    "correct_count": 0,
+    "incorrect_count": 0,
+    "difficulty": 1,
+    "times_reviewed": 0
+  },
+  {
+    "word": "variable",
+    "symbol": "v",
+    "translation": "переменная",
+    "last_reviewed": null,
+    "next_review": "2025-12-28T22:40:08.511368",
+    "correct_count": 0,
+    "incorrect_count": 0,
+    "difficulty": 1,
+    "times_reviewed": 0
+  }
+]
