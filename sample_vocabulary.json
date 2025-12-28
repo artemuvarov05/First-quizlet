@@ -1,0 +1,52 @@
+[
+  {
+    "word": "hello",
+    "symbol": "h",
+    "translation": "a greeting"
+  },
+  {
+    "word": "world",
+    "symbol": "w",
+    "translation": "the earth or a worldly matter"
+  },
+  {
+    "word": "python",
+    "symbol": "p",
+    "translation": "a high-level programming language"
+  },
+  {
+    "word": "computer",
+    "symbol": "c",
+    "translation": "an electronic device for processing data"
+  },
+  {
+    "word": "keyboard",
+    "symbol": "k",
+    "translation": "a panel of keys for typing"
+  },
+  {
+    "word": "mouse",
+    "symbol": "m",
+    "translation": "a small computer input device"
+  },
+  {
+    "word": "screen",
+    "symbol": "s",
+    "translation": "a display surface for visual output"
+  },
+  {
+    "word": "algorithm",
+    "symbol": "a",
+    "translation": "a step-by-step procedure for calculations"
+  },
+  {
+    "word": "function",
+    "symbol": "f",
+    "translation": "a relation that assigns a set of inputs to outputs"
+  },
+  {
+    "word": "variable",
+    "symbol": "v",
+    "translation": "a storage location with an associated name"
+  }
+]
