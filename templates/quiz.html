@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Mode - Vocabulary Learning System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .nav-link {
+            font-weight: 500;
+        }
+        .question-card {
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .option-btn {
+            text-align: left;
+            margin-bottom: 10px;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+        .progress-container {
+            margin: 20px 0;
+        }
+        .feedback-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Vocabulary Learning System</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/study">Study</a>
+                <a class="nav-link" href="/quiz">Quiz</a>
+                <a class="nav-link" href="/stats">Stats</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Quiz Mode</h2>
+        <p>Test your knowledge with multiple choice questions. The system will focus on difficult words.</p>
+        
+        <div class="progress-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{ (10 - quiz_items|length) * 10 }}%"></div>
+            </div>
+            <small>Progress: {{ 10 - quiz_items|length }}/10 completed</small>
+        </div>
+        
+        {% if quiz_items %}
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card question-card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">What does this word mean?</h5>
+                        <h3 class="text-center mb-4">{{ quiz_items[0].word }}</h3>
+                        
+                        <div id="options-container">
+                            {% for option in quiz_items[0].options %}
+                            <button class="btn btn-outline-primary option-btn w-100 text-start" 
+                                    onclick="selectOption(this, '{{ option }}', '{{ quiz_items[0].correct_answer }}', '{{ quiz_items[0].word }}')">
+                                {{ option }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                        
+                        <div id="feedback-message" class="feedback-message"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <h4>Upcoming Questions</h4>
+            <div class="row">
+                {% for item in quiz_items[1:] %}
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">{{ item.word }}</h6>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center">
+            <h4>Quiz Complete!</h4>
+            <p>You've finished the quiz. Great job!</p>
+            <a href="/" class="btn btn-primary">Back to Vocabulary</a>
+            <a href="/study" class="btn btn-secondary">Continue Studying</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function selectOption(button, selectedOption, correctAnswer, word) {
+            // Disable all buttons
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent.trim() === correctAnswer) {
+                    btn.classList.remove('btn-outline-primary');
+                    btn.classList.add('btn-success');
+                } else if (btn.textContent.trim() === selectedOption && selectedOption !== correctAnswer) {
+                    btn.classList.remove('btn-outline-primary');
+                    btn.classList.add('btn-danger');
+                }
+            });
+            
+            // Show feedback
+            const feedbackDiv = document.getElementById('feedback-message');
+            if (selectedOption === correctAnswer) {
+                feedbackDiv.className = 'feedback-message alert alert-success';
+                feedbackDiv.textContent = 'Correct! Well done.';
+                feedbackDiv.style.display = 'block';
+            } else {
+                feedbackDiv.className = 'feedback-message alert alert-danger';
+                feedbackDiv.innerHTML = `Incorrect. The correct answer is: <strong>${correctAnswer}</strong>`;
+                feedbackDiv.style.display = 'block';
+            }
+            
+            // Update performance and move to next question after delay
+            setTimeout(function() {
+                fetch('/update_performance', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `word=${encodeURIComponent(word)}&is_correct=${selectedOption === correctAnswer}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Reload the page to get the next question
+                        location.reload();
+                    } else {
+                        console.error('Error updating performance');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
